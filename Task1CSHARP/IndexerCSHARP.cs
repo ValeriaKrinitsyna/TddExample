@@ -10,7 +10,7 @@ namespace Task1CSHARP
     {
         double[] array;
         int start, end;
-        public IndexerCSHARP(double[] array, int start, int length)
+        public IndexerCSHARP(double[] array, int start, int length) //acces to the part of array
         {
             if (start < 0 || length <= 0 || array.Length <= start + length)
                 throw new ArgumentException();
