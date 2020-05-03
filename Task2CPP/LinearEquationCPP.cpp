@@ -23,7 +23,7 @@ vector<string> LinearEquation::resplit(const string& s, string rgx_str) //splits
 
 LinearEquation::LinearEquation(string _s) // makes an equation from the string of coefficients
 {
-	vector<string> s = resplit(_s, "[-.]"); //splits everywhere besides "-" and "."
+	vector<string> s = resplit(_s, "[^\\d-.]");
 	for (int i = 0; i < s.size(); i++)
 		if (s[i] != "")
 			coefs.push_back(stod(s[i].c_str()));

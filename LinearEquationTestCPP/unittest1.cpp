@@ -88,11 +88,10 @@ namespace LinearEquationTestCPP
 
 		TEST_METHOD(CheckContradictoryEquation)
 		{
-			LinearEquation a("0,0,0,0,3");
+			LinearEquation a("0,0,0,3");
 			bool check = (a) ? true : false;
 			Assert::AreEqual(false, check);
 		}
-
 
 		TEST_METHOD(CheckSolvableEquation)
 		{

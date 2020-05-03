@@ -11,7 +11,7 @@ namespace IndexerTestCPP
 	{
 	public:
 
-		double* array = new double[] { 1, 2, 3, 4 };
+		double* array = new double[4] { 1, 2, 3, 4 };
 
 		TEST_METHOD (HaveCorrectLength)
 		{

@@ -23,7 +23,7 @@ namespace SystemOfLinearEquationTestC
 			Assert::AreEqual(-3.0, newSystem[1][1]);
 		}
 
-		TEST_METHOD(CorrectAnswer)
+		TEST_METHOD(CorrectSolving)
 		{
 			int n = 3;
 			SystemOfLinearEquation newSystem(n);
