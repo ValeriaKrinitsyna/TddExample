@@ -19,7 +19,7 @@ namespace SystemOfLinearEquationsCSHARP
         }
 
         [TestMethod]
-        public void CorrectSolving()
+        public void CorrectSolving()//if the difference is bigger than 10^(-9), then we think SLE solved wrong
         {
             int n = 3;
             SystemOfLinearEquations s = new SystemOfLinearEquations(n);
@@ -27,8 +27,8 @@ namespace SystemOfLinearEquationsCSHARP
             s.addEquation(new LinearEquation("3,-3,2,2"));
             s.addEquation(new LinearEquation("2,-3,1,3"));
             s.steppingUp();
-            double[] solve1 = new double[] { -11, -5, 10 };
-            double[] solve2 = s.solveSystem();
+            double[] solve1 = new double[] { -11, -5, 10 };//right answer
+            double[] solve2 = s.solveSystem();//solving
             bool check = true;
             for (int i = 0; i < n; i++)
             {
@@ -40,7 +40,7 @@ namespace SystemOfLinearEquationsCSHARP
         
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void CheckNoSolutions()
+        public void CheckNoSolutions() //number of variables is bigger than size
         {
             int n = 3;
             SystemOfLinearEquations s = new SystemOfLinearEquations(n);
@@ -53,7 +53,7 @@ namespace SystemOfLinearEquationsCSHARP
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void InfinitelyManySolutions()
+        public void InfinitelyManySolutions() // number of variables is less than size
         {
             int n = 3;
             SystemOfLinearEquations s = new SystemOfLinearEquations(n);

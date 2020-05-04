@@ -11,11 +11,11 @@ private:
 public:
 	SystemOfLinearEquation(int _n) :n(_n) {}
 	~SystemOfLinearEquation() { vector<LinearEquation>().swap(SLE); }
-	LinearEquation& operator[] (int index);
-	int size();
-	void addEquation(LinearEquation&);
-	void steppingUp();
-	vector<double> solveGauss();
-	operator string();
+	LinearEquation& operator[] (int index);// access to the equation by it's index
+	int size();//get size of the system of linear equations
+	void addEquation(LinearEquation&);//add new equation to SLE
+	void steppingUp();//stepping up the SLE
+	vector<double> solveGauss();// solving by Gauss method
+	operator string();//output
 };
 

@@ -23,7 +23,7 @@ namespace SystemOfLinearEquationTestC
 			Assert::AreEqual(-3.0, newSystem[1][1]);
 		}
 
-		TEST_METHOD(CorrectSolving)
+		TEST_METHOD(CorrectSolving) //if the difference is bigger than 10^(-9), then we think SLE solved wrong
 		{
 			int n = 3;
 			SystemOfLinearEquation newSystem(n);
@@ -34,15 +34,15 @@ namespace SystemOfLinearEquationTestC
 			newSystem.addEquation(a2);
 			newSystem.addEquation(a3);
 			newSystem.steppingUp();
-			vector<double> solve1 = newSystem.solveGauss();
+			vector<double> solve1 = newSystem.solveGauss(); //solving
 			bool check = true;
-			vector<double>solve2{ -11,-5,10 };
+			vector<double>solve2{ -11,-5,10 }; //right answer
 			for (int i = 0; i < solve1.size(); i++)
 				if (abs(solve1[i] - solve2[i]) > 1e-9) check = false;
 			Assert::AreEqual(true, check);
 		}
 
-		TEST_METHOD(CheckNoSolutions)
+		TEST_METHOD(CheckNoSolutions) //number of variables is bigger than size
 		{
 			auto func = []()
 			{
@@ -60,7 +60,7 @@ namespace SystemOfLinearEquationTestC
 			Assert::ExpectException<invalid_argument>(func);
 		}
 
-		TEST_METHOD(InfinitelyManySolutions)
+		TEST_METHOD(InfinitelyManySolutions) // number of variables is less than size
 		{
 			auto func = []()
 			{

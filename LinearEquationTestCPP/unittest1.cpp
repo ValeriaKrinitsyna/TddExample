@@ -16,34 +16,34 @@ namespace LinearEquationTestCPP
 	{
 	public:
 
-		TEST_METHOD(CorrectRead1)
+		TEST_METHOD(CorrectRead1)//correct split, read from string
 		{
 			string s = "1,2,3,4.5,6";
 			LinearEquation a(s);
 			Assert::AreEqual(4.5, a[3]);
 		}
 
-		TEST_METHOD(CorrectRead2)
+		TEST_METHOD(CorrectRead2) //correct read from vector
 		{
 			vector<double>_a{ 1,2,3,4.5,6 };
 			LinearEquation a(_a);
 			Assert::AreEqual(3.0, a[2]);
 		}
 
-		TEST_METHOD(CorrectRead3)
+		TEST_METHOD(CorrectRead3) //correct initialization with n zeros
 		{
 			LinearEquation a(5);
 			Assert::AreEqual(0.0, a[2]);
 		}
 
-		TEST_METHOD(EqualInit)
+		TEST_METHOD(EqualInit) //correct initialization with equal numbers
 		{
 			LinearEquation a(5);
 			a.equalInit(3.4);
 			Assert::AreEqual(3.4, a[3]);
 		}
 
-		TEST_METHOD(CorrectAddition)
+		TEST_METHOD(CorrectAddition) 
 		{
 			string s1 = "5,3,4.1,12,-6";
 			string s2 = "-10,6,8,10,0.5";

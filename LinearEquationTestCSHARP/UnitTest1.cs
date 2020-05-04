@@ -10,7 +10,7 @@ namespace LinearEquationTestCSHARP
     {
 
         [TestMethod]
-        public void String()
+        public void String()//correct split, read from string
         {
             string coeff = "1, 2, 3, 4.5, 6";
             LinearEquation a1 = new LinearEquation(coeff);
@@ -18,7 +18,7 @@ namespace LinearEquationTestCSHARP
         }
 
         [TestMethod]
-        public void Array()
+        public void Array()//correct read from vector
         {
             const int n = 5;
             double[] coeff = new double[n] { 1, 2, 3, 4.5, 6 };
@@ -27,7 +27,7 @@ namespace LinearEquationTestCSHARP
         }
 
         [TestMethod]
-        public void List()
+        public void List()//correct read from list
         {
             List<double> coeff = new List<double>() { 1, 2, 3, 4.5, 6 };
             LinearEquation a1 = new LinearEquation(coeff);
@@ -35,7 +35,7 @@ namespace LinearEquationTestCSHARP
         }
 
         [TestMethod]
-        public void nZeros()
+        public void nZeros()//correct initialization with n zeros
         {
             int n = 3;
             LinearEquation a = new LinearEquation(n);
@@ -92,7 +92,7 @@ namespace LinearEquationTestCSHARP
         }
 
         [TestMethod]
-        public void CorrectEqualInit()
+        public void CorrectEqualInit() //correct initialization with equal numbers
         {
             LinearEquation a = new LinearEquation(3);
             a.equalInit(3.9);

@@ -11,42 +11,42 @@ namespace Task2CSHARP
         private List<LinearEquation> system = new List<LinearEquation>();
         private int n;
 
-        public SystemOfLinearEquations(int n)
+        public SystemOfLinearEquations(int n) 
         {
             this.n = n;
         }
 
-        public LinearEquation this[int index]
+        public LinearEquation this[int index] // access to the equation by it's index
         {
             get
             {
                 if (index >= 0 && index < Size)
-                    return system[index];
+                    return system[index]; //get equation by it's index
                 else throw new IndexOutOfRangeException();
             }
             set
             {
                 if (index >= 0 && index < Size)
-                    system[index] = value;
+                    system[index] = value; //set coefs to equation by it's index
                 else throw new IndexOutOfRangeException();
             }
         }
 
-        public int Size => system.Count;
+        public int Size => system.Count; //get size of the system of linear equations
 
-        public void addEquation(LinearEquation a)
+        public void addEquation(LinearEquation a) //add new equation to SLE
         {
-            if (a.Size == n + 1)
-                system.Add(a);
+            if (a.Size == n + 1) //if there is place for new equation
+                system.Add(a); //add new equation to the end of SLE
             else throw new ArgumentException();
         }
 
-        public void removeEquation(int index)
+        public void removeEquation(int index) //remove equation from SLE
         {
             system.RemoveAt(index);
         }
 
-        public void steppingUp()
+        public void steppingUp() //stepping up the SLE
         {
             int c, z;
             double p1, p2;
@@ -55,29 +55,29 @@ namespace Task2CSHARP
                 z = i;
                 if (this[i][z] == 0)
                 {
-                    while (this[i][z] == 0 && z < n) z++;
+                    while (this[i][z] == 0 && z < n) z++; //looking for non-zero element in [i] string
                     c = 1;
-                    while ((i + c) < Size && this[i + c][z] == 0) c++;
-                    if ((i + c) == Size)
+                    while ((i + c) < Size && this[i + c][z] == 0) c++;//while the last string is not empty
+                    if ((i + c) == Size) //SLE has stepped form
                         return;
-                    swap(this[i], this[i + c]);
+                    swap(this[i], this[i + c]); //upper strings have less zeros. [0][0] element is not 0
                 }
                 for (int j = i + 1; j < Size; j++)
                 {
-                    p1 = this[i][z];
-                    p2 = this[j][z];
-                    this[j] = this[j] * p1 - this[i] * p2;
+                    p1 = this[i][z]; 
+                    p2 = this[j][z]; 
+                    this[j] = this[j] * p1 - this[i] * p2; //set to 0 first element in [j] column
                 }
             }
         }
 
-        public double[] solveSystem()
+        public double[] solveSystem() // solving by Gauss method
         {
-            while (this[Size - 1].IsNull())
+            while (this[Size - 1].IsNull()) //remove empty string
                 this.removeEquation(Size - 1);
-            if (this[Size - 1])
+            if (this[Size - 1]) //while SLE is not empty
             {
-                if (Size == n)
+                if (Size == n) //quantity of variables == quantity of equations
                 {
                     double[] solve = new double[n];
                     for (int i = Size - 1; i >= 0; i--)
@@ -85,7 +85,7 @@ namespace Task2CSHARP
                         solve[i] = this[i][n];
                         for (int j = i + 1; j < n; j++)
                         {
-                            solve[i] -= this[i][j] * solve[j];
+                            solve[i] -= this[i][j] * solve[j]; //set to 0 first element in column
                         }
                         solve[i] /= this[i][i];
                     }
@@ -96,14 +96,14 @@ namespace Task2CSHARP
             else throw new ArgumentException("The system has no solutions!");
         }
 
-        private void swap(LinearEquation a, LinearEquation b)
+        private void swap(LinearEquation a, LinearEquation b) //exchange
         {
             LinearEquation tmp = new LinearEquation(a);
             b.CopyTo(a);
             tmp.CopyTo(b);
         }
 
-        public override string ToString()
+        public override string ToString() //output
         {
             string res = "";
             for (int i = 0; i < Size; i++)
